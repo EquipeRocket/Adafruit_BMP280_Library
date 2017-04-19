@@ -62,7 +62,8 @@ bool Adafruit_BMP280::begin(uint8_t a, uint8_t chipid) {
     return false;
 
   readCoefficients();
-  write8(BMP280_REGISTER_CONTROL, 0x3F);
+  write8(BMP280_REGISTER_CONTROL, 0x5F); // 010 111 11 Set oversample for Temperature (3), Pressure (3) and PowerMode (2).
+  write8(BMP280_REGISTER_CONFIG, 0x1C);  // 000 111 00 Set Standby Time (3), IIR Filter (3), fill bit (1), SPI Mode (1).
   return true;
 }
 
